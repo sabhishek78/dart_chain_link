@@ -8,11 +8,26 @@
 // https://s1.whiteboardfox.com/s/2ae37dc832647bad.png
 
 
-
+class Link
+{
+ String value;
+ Link next;
+}
 
 main() {
   // Exercise 2:  Create the object structure shown in the above link
   // including the variable called 'firstLink'
+ Link firstLink =new Link();
+ Link secondLink =new Link();
+ Link thirdLink =new Link();
+ firstLink.value='Raj';
+ secondLink=firstLink.next;
+ secondLink.value='Makiko';
+ thirdLink=secondLink.next;
+ thirdLink.value='Paul';
+ thirdLink.next=null;
+
+
 
 }
 
@@ -23,12 +38,29 @@ main() {
 // Raj
 // Makiko
 // Paul
+printLink(Link x)
+{
+ if(x.next!=null)
+   {
+     print(x.value);
+     x=x.next;
+   }
+}
 
 
 // Exercise 4: Create a function which takes a Link parameter and a String
 // parameter, and adds another link to the end of the chain.  The new link
 // value should be the String parameter passed into the function.typedef
-
+addLink(Link x, String s)
+{
+  while(x.next!=null) //reach end of list
+  {
+    x=x.next;
+  }
+  x.next=new Link();
+  x.next.value=s;
+  x.next.next=null;
+}
 
 // *** Stretch ****
 // Exercise 5: Create a function called insert which takes a Link,
@@ -36,3 +68,16 @@ main() {
 // in the chain.  For example, calling insert(firstLink, 2, "A") should
 // update the chain structure to look like this:
 // https://s1.whiteboardfox.com/s/77ff03ee231f2f60.png
+insert(Link x,int index, String s)
+{
+  int i=1;
+  while(i<=index)
+    {
+      x=x.next;
+      i++;
+    }
+    Link temp= new Link();
+    temp.value=s;
+    temp.next=x.next;
+    x.next=temp;
+}
