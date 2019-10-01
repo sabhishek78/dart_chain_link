@@ -6,7 +6,7 @@
 // types for each field so that you can create an object structure that looks
 // like this:
 // https://s1.whiteboardfox.com/s/2ae37dc832647bad.png
-
+//import 'dart:io';
 
 class Link
 {
@@ -17,15 +17,16 @@ class Link
 main() {
   // Exercise 2:  Create the object structure shown in the above link
   // including the variable called 'firstLink'
- Link firstLink =new Link();
- Link secondLink =new Link();
- Link thirdLink =new Link();
+
+ Link firstLink =Link();
+ //Link secondLink =new Link();
+ //Link thirdLink =new Link();
  firstLink.value='Raj';
- secondLink=firstLink.next;
- secondLink.value='Makiko';
- thirdLink=secondLink.next;
- thirdLink.value='Paul';
- thirdLink.next=null;
+ firstLink.next=Link();
+ firstLink.next.value="Makiko";
+ firstLink.next.next=Link();
+ firstLink.next.next.value='Paul';
+ firstLink.next.next.next=null;
 
 
 
@@ -57,7 +58,7 @@ addLink(Link x, String s)
   {
     x=x.next;
   }
-  x.next=new Link();
+  x.next=Link();
   x.next.value=s;
   x.next.next=null;
 }
@@ -76,7 +77,7 @@ insert(Link x,int index, String s)
       x=x.next;
       i++;
     }
-    Link temp= new Link();
+    Link temp= Link();
     temp.value=s;
     temp.next=x.next;
     x.next=temp;
