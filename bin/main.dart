@@ -12,13 +12,18 @@ class Link
 {
  String value;
  Link next;
+ Link(String s)
+ {
+   this.value=s;
+   this.value=null;
+ }
 }
 
 main() {
   // Exercise 2:  Create the object structure shown in the above link
   // including the variable called 'firstLink'
 
- Link firstLink =Link();
+/* Link firstLink =Link();
  //Link secondLink =new Link();
  //Link thirdLink =new Link();
  firstLink.value='Raj';
@@ -26,8 +31,14 @@ main() {
  firstLink.next.value="Makiko";
  firstLink.next.next=Link();
  firstLink.next.next.value='Paul';
- firstLink.next.next.next=null;
+ firstLink.next.next.next=null;*/
 
+  Link firstLink =Link('raj');
+  Link secondLink =Link('Makiko');
+  Link thirdLink =Link('Paul');
+  firstLink.next=secondLink;
+  secondLink.next=thirdLink;
+  thirdLink.next=null;
 
 
 }
@@ -41,7 +52,7 @@ main() {
 // Paul
 printLink(Link x)
 {
- if(x.next!=null)
+ while(x.next!=null)
    {
      print(x.value);
      x=x.next;
@@ -58,9 +69,10 @@ addLink(Link x, String s)
   {
     x=x.next;
   }
-  x.next=Link();
-  x.next.value=s;
-  x.next.next=null;
+  Link newNode=Link(s);
+  x.next=newNode;
+
+  newNode.next=null;
 }
 
 // *** Stretch ****
@@ -72,13 +84,19 @@ addLink(Link x, String s)
 insert(Link x,int index, String s)
 {
   int i=1;
-  while(i<=index)
+  int numberOfNodes=0;
+  while(x.next!=null) //reach end of list
+      {
+    x=x.next;
+    numberOfNodes++;
+  }
+  print("Number of Nodes=${numberOfNodes}");
+  while(i<=index && index<=numberOfNodes)
     {
       x=x.next;
       i++;
     }
-    Link temp= Link();
-    temp.value=s;
-    temp.next=x.next;
+    Link temp= Link(s);
+     temp.next=x.next;
     x.next=temp;
 }
